@@ -1,5 +1,38 @@
 # CarND-Path-Planning-Project
 Self-Driving Car Engineer Nanodegree Program
+
+## Introduction 
+This path planning project is a wonderful tool for practicing what we learned in the lecture. 
+Path planning problem intergrates sensor fusion, locatlization, prediction, behavior planning, and trajectory generations.
+It is at the core of the self-driving car architecture.
+
+## The code model for generating paths:
+From the simulator's sensor data, I create two kinds of Vehicle objects: ego vehicle, and backgroud vehicles.
+The these vehicle objects stores the status such as localization and speed of the corresponding vehicles.
+I also generated 2s predictions of the other backgroud vehicles. 
+
+From the localization data and predictions of the vehicles, I started behavior planning, such as whether and when to change lane; whether to reduce speed or increase speed; etc.
+
+Once the behavior is decided, five points are chosen for fitting a spline, which will provide a smooth path trajectory for the ego vehicles.
+
+Two of these five points are from the last two points of the previous generated waypoints. The other three points are (30 m, 60 m, 90 m) further along the "s" and the desired "d", which is from the behavior plannig part.
+
+During the generation of the spline fitting, the points are transferred to local coordinates based on the ego vehicles. Once fitting is done, the interpolated waypoints are then transferred back to glocal cooordinates, and sent to the simulator.
+
+The codes and architecture is inspired highly by the walkthrough video. JMI (Minimum Jerk Trajectories) implementation would improve the results, and will be more practical in real world application.
+
+
+
+
+
+
+
+
+
+
+
+
+
    
 ### Simulator.
 You can download the Term3 Simulator which contains the Path Planning Project from the [releases tab (https://github.com/udacity/self-driving-car-sim/releases).
